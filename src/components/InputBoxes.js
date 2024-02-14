@@ -17,25 +17,28 @@ export const InputBoxes = ({ setGeneratedText }) => {
   };
 
   const handleGenerateMessage = async () => {
-    const text = await generateText(`Write a sweet nothing for ${name}`);
+    const text = await generateText(`Write a kind message full of love for ${name}`);
     setGeneratedText(text);
   };
 
   return (
     <div className={styles.container}>
+      <h>Receiver's name</h>
       <input
+        className={styles.inputBox}
         type="text"
-        placeholder="Receiver's name..."
         value={name}
         onChange={handleNameChange}
       />
+      <h>Receiver's phone number</h>
       <input
+        className={styles.inputBox}
         type="text"
-        placeholder="Receiver's number..."
         value={phoneNumber}
         onChange={handlePhoneNumberChange}
       />
-      <button onClick={handleGenerateMessage}>Generate!</button>
+      <button className={styles.generateButton}
+        onClick={handleGenerateMessage}>Generate!</button>
     </div>
   );
 }
