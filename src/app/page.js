@@ -5,8 +5,19 @@ import React, { useState } from 'react';
 
 import InputBoxes from '../components/InputBoxes'
 
+import generateText from '../backend/generateText'
+
 export default function Home() {
   const [generatedText, setGeneratedText] = useState('');
+
+  const handleGenerateMessage = async () => {
+    const text = await generateText(`Write a kind message full of love for ${name}`);
+    setGeneratedText(text);
+  };
+
+  const handleSend = async () => {
+    //TODO 
+  };
 
   return (
     <main className={styles.main}>
@@ -22,6 +33,12 @@ export default function Home() {
 
         <InputBoxes setGeneratedText={setGeneratedText} />
         <div className={styles.card}>{generatedText}</div>
+        <div className={styles.container}>
+          <button className={styles.button}
+            onClick={handleGenerateMessage}>Redo!</button>
+          <button className={styles.sendButton}
+            onClick={handleSend}>Send!</button>
+        </div>
       </div>
     </main>
   );
