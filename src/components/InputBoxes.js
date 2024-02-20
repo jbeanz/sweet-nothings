@@ -1,13 +1,16 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import styles from "./inputboxes.module.css";
 
 import generateText from '../backend/generateText'
 
-export const InputBoxes = ({ setGeneratedText }) => {
-  const [name, setName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-
+export const InputBoxes = ({
+  name,
+  setName,
+  phoneNumber,
+  setPhoneNumber,
+  setGeneratedText,
+}) => {
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
