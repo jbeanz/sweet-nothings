@@ -6,17 +6,16 @@ import React, { useState } from 'react';
 import InputBoxes from '../components/InputBoxes'
 
 import generateText from '../backend/generateText'
+import { sendMessage } from './sendMessage'
 
 export default function Home() {
+  const [name, setName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('1');
   const [generatedText, setGeneratedText] = useState('');
 
   const handleGenerateMessage = async () => {
     const text = await generateText(`Write a kind message full of love for ${name}`);
     setGeneratedText(text);
-  };
-
-  const handleSend = async () => {
-    //TODO 
   };
 
   return (
@@ -31,13 +30,19 @@ export default function Home() {
         <p>Schedule sweet, authentic messages to your partner's voicemail.
           Never forget a birthday or a wedding anniversary!</p>
 
-        <InputBoxes setGeneratedText={setGeneratedText} />
+        <InputBoxes
+          name={name}
+          setName={setName}
+          phoneNumber={phoneNumber}
+          setPhoneNumber={setPhoneNumber}
+          setGeneratedText={setGeneratedText}
+        />
         <div className={styles.card}>{generatedText}</div>
         <div className={styles.container}>
           <button className={styles.button}
             onClick={handleGenerateMessage}>Redo!</button>
           <button className={styles.sendButton}
-            onClick={handleSend}>Send!</button>
+            onClick={() => { sendMessage(phoneNumber) }}>Send!</button>
         </div>
       </div>
     </main>
